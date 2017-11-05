@@ -162,10 +162,15 @@ def create_excel(spreadsheet_name, expenses, event):
 
 	# Iterate over the data and write it out row by row.
 	for item in (expenses):
+		#round to two decimals
+		amount = round(item['AMOUNT'],2)
+		#comma separated, not dot separated
+		amount_str = str(amount).replace('.',',')
+		
 		#print type(reason)
 		worksheet.write(row, col,     item['ACCOUNT_HOLDER'] +' ' + event)
 		worksheet.write(row, col + 1, item['REASON'])
-		worksheet.write(row, col + 2, item['AMOUNT'])
+		worksheet.write(row, col + 2, amount_str)
 		row += 1
 
 	# Write a total using a formula.
